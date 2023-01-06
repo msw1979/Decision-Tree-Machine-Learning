@@ -1,0 +1,3 @@
+X Train set: (140, 5) and Y Train set: (140,)
+X Test set: (60, 5) and Y Test set: (60,)
+Decision Trees's Accuracy: 0.98
