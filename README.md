@@ -6,5 +6,8 @@ The code will generate:
 1) Histogram plot for every feature. 
 2) Output file that contains:
    Print Train and Test set dimensions.
+   Print Confusion Matrix.
+   Print Classification Report.
    Print the accuracy score for the prediction tree.
-3) Plot Decision Tree for the training data.    
+3) Plot Confusion Matrix.    
+4) Plot Decision Tree for the training data.    
