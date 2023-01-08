@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn import (linear_model ,preprocessing,metrics)
-from sklearn.metrics import r2_score
+from sklearn.metrics import (r2_score,roc_auc_score,hinge_loss,confusion_matrix,classification_report)
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -71,6 +71,27 @@ drug_Tree.fit(X_train,Y_train)
 
 # find the prediction Tree using X_test set
 prediction_Tree = drug_Tree.predict(X_test)
+
+#print confusion matrix
+print("Confusion Matrix:", file=output_file)
+print(confusion_matrix(Y_test, prediction_Tree), file=output_file)
+#print classification report
+print(classification_report(Y_test, prediction_Tree), file=output_file)
+
+#plot confusion matrix
+plt.clf()
+CM = confusion_matrix(Y_test, prediction_Tree)
+fig, ax = plt.subplots()
+ax.matshow(CM, cmap=plt.cm.Blues, alpha=0.3)
+for i in range(CM.shape[0]):
+    for j in range(CM.shape[1]):
+        ax.text(x=j, y=i,s=CM[i, j], va='center', ha='center', size='xx-large')
+plt.xticks(np.arange(0, 5, 1), ['DrugA','DrugB','DrugC','DrugX','DrugY'])
+plt.yticks(np.arange(0, 5, 1), ['DrugA','DrugB','DrugC','DrugX','DrugY'])
+plt.xlabel('Predictions', fontsize=18)
+plt.ylabel('Actuals', fontsize=18)
+plt.title('Confusion Matrix', fontsize=18)
+plt.savefig('confusion_matrix.png')
 
 #print the Decision Tree Accuracy 
 print("Decision Trees's Accuracy: %.2f"%metrics.accuracy_score(Y_test, prediction_Tree), file=output_file)
